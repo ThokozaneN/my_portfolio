@@ -875,9 +875,10 @@ section {
     }
 
     .location-tag {
-        right: 0;
+        right: -50%;
         left: 50%;
-        transform: translateX(-50%) rotate(5deg);
+        bottom: -280px;
+        transform: translateX(-50%) rotate(0deg);
     }
 
     .section-title {
