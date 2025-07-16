@@ -73,17 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'HTML5', icon: 'fab fa-html5', category: 'Frontend' },
         { name: 'CSS3/Sass', icon: 'fab fa-css3-alt', category: 'Frontend' },
         { name: 'JavaScript', icon: 'fab fa-js', category: 'Language' },
-        { name: 'Python', icon: 'fab fa-python', category: 'Language' },
+        //{ name: 'Python', icon: 'fab fa-python', category: 'Language' },
         { name: 'React', icon: 'fab fa-react', category: 'Frontend' },
-        { name: 'Next.js', icon: 'fas fa-globe', category: 'Frontend' },
+        //{ name: 'Next.js', icon: 'fas fa-globe', category: 'Frontend' },
         { name: 'Django', icon: 'fas fa-layer-group', category: 'Backend' },
         { name: 'Express', icon: 'fas fa-server', category: 'Backend' },
         { name: 'MongoDB', icon: 'fas fa-database', category: 'Database' },
         { name: 'PostgreSQL', icon: 'fas fa-database', category: 'Database' },
         { name: 'GraphQL', icon: 'fas fa-project-diagram', category: 'API' },
-        { name: 'Git', icon: 'fab fa-git-alt', category: 'Tool' },
+        //{ name: 'Git', icon: 'fab fa-git-alt', category: 'Tool' },
         { name: 'AWS', icon: 'fab fa-aws', category: 'Cloud' },
-        { name: 'Google Cloud', icon: 'fab fa-google', category: 'Cloud' }
+        //{ name: 'Google Cloud', icon: 'fab fa-google', category: 'Cloud' }
     ];
 
     // Projects data
