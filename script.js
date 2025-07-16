@@ -92,19 +92,19 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'E-commerce Platform',
             description: 'A full-featured online store with payment integration and admin dashboard.',
             tags: ['React', 'Node.js', 'MongoDB'],
-            image: 'assets/images/project1.jpg'
+            image: 'images/perfume.jpg'
         },
         {
             title: 'Task Management App',
             description: 'A productivity application for organizing tasks with team collaboration features.',
             tags: ['Vue.js', 'Firebase', 'Tailwind CSS'],
-            image: 'assets/images/project2.jpg'
+            image: 'images/task.jpg'
         },
         {
             title: 'Portfolio Website',
             description: 'A custom portfolio website with animations and theme switching.',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            image: 'assets/images/project3.jpg'
+            image: 'images/suit.jpg'
         }
     ];
 
