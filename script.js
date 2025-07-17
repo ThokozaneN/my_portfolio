@@ -182,14 +182,57 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(element);
     });
 
-    // Form submission
-    const contactForm = document.querySelector('.contact-form');
+    // Form submission with Formspree
+    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            // Here you would typically send the form data to a server
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
+            
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const btnText = submitButton.querySelector('.btn-text');
+            const spinner = submitButton.querySelector('.loading-spinner');
+            
+            try {
+                // Show loading state
+                btnText.textContent = 'Sending...';
+                spinner.style.display = 'inline-block';
+                submitButton.disabled = true;
+                
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success - show confirmation
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'form-success';
+                    successMessage.innerHTML = `
+                        <i class="fas fa-check-circle"></i>
+                        Message sent! I'll get back to you soon.
+                    `;
+                    contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
+                    contactForm.reset();
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('Oops! Something went wrong. Please try again or email me directly at nxuthokozane@outlook.com');
+                console.error('Form submission error:', error);
+            } finally {
+                // Reset button state
+                btnText.textContent = 'Send Message';
+                spinner.style.display = 'none';
+                submitButton.disabled = false;
+            }
         });
     }
 });

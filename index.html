@@ -179,7 +179,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Let's Connect</h2>
@@ -187,26 +186,45 @@
                 <div class="contact-info">
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p>South Africa<br>(Accepting Global Projects)</p>
+                        <p>Secunda, Mpumalanga, South Africa</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <p>dev@thokozane.co.za</p>
+                        <p>nxuthokozane@outlook.com</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
-                        <p>+27 69 807 7866</p>
+                        <p>+27 12 345 6789</p>
                     </div>
                 </div>
-                <form class="contact-form">
+                <form 
+                    id="contact-form"
+                    action="https://formspree.io/f/xzzvbnqj" 
+                    method="POST"
+                    class="contact-form"
+                >
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+                        <input 
+                            type="text" 
+                            name="name"
+                            placeholder="Your Name" 
+                            required
+                        >
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input 
+                            type="email" 
+                            name="email"
+                            placeholder="Your Email" 
+                            required
+                        >
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message" required></textarea>
+                        <textarea 
+                            name="message"
+                            placeholder="Your Message" 
+                            required
+                        ></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
