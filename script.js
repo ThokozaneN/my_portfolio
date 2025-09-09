@@ -92,21 +92,25 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Business Directory',
             description: 'A full-featured online store with payment integration and admin dashboard.',
             tags: ['React', 'Node.js', 'Supabase'],
-            image: 'images/perfume.jpg'
-            demoLink: "https://thokozanen.github.io/business-directory/",
-            codeLink: "https://github.com/username/project1"
+            image: 'images/perfume.jpg',
+            demoLink: 'https://thokozanen.github.io/business-directory/',
+            codeLink: 'https://github.com/thokozanen/business-directory'
         },
         {
             title: 'Task Management App',
             description: 'A productivity application for organizing tasks with team collaboration features.',
             tags: ['Vue.js', 'Firebase', 'Tailwind CSS'],
-            image: 'images/task.jpg'
+            image: 'images/task.jpg',
+            demoLink: 'https://example-task-app.com',
+            codeLink: 'https://github.com/username/task-app'
         },
         {
             title: 'Portfolio Website',
             description: 'A custom portfolio website with animations and theme switching.',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            image: 'images/suit.jpg'
+            image: 'images/suit.jpg',
+            demoLink: 'https://example-portfolio.com',
+            codeLink: 'https://github.com/username/portfolio'
         }
     ];
 
@@ -127,26 +131,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Populate projects
-    projectCard.innerHTML = `
-    <img src="${project.image}" alt="${project.title}" class="project-image">
-    <div class="project-content">
-        <h3 class="project-title">${project.title}</h3>
-        <p class="project-description">${project.description}</p>
-        <div class="project-tags">
-            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-        </div>
-        <div class="project-links">
-            <a href="${project.demoLink}" class="project-link" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
-            <a href="${project.codeLink}" class="project-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github"></i> Code
-            </a>
-        </div>
-    </div>
-`;
-    projectsGrid.appendChild(projectCard);
-});
+    const projectsGrid = document.querySelector('.projects-grid');
+    projectsData.forEach(project => {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'project-card';
+        projectCard.setAttribute('data-animate', '');
+        projectCard.innerHTML = `
+            <img src="${project.image}" alt="${project.title}" class="project-image">
+            <div class="project-content">
+                <h3 class="project-title">${project.title}</h3>
+                <p class="project-description">${project.description}</p>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div class="project-links">
+                    <a href="${project.demoLink}" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                    <a href="${project.codeLink}" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
+            </div>
+        `;
+        projectsGrid.appendChild(projectCard);
+    });
 
     // Animate milestones on scroll
     const milestones = document.querySelectorAll('.milestone');
