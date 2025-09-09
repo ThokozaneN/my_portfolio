@@ -89,9 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Projects data
     const projectsData = [
         {
-            title: 'E-commerce Platform',
+            title: 'Business Directory',
             description: 'A full-featured online store with payment integration and admin dashboard.',
-            tags: ['React', 'Node.js', 'MongoDB'],
+            tags: ['React', 'Node.js', 'Supabase'],
             image: 'images/perfume.jpg'
         },
         {
