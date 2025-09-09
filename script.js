@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Business Directory',
             description: 'A full-featured online store with payment integration and admin dashboard.',
             tags: ['React', 'Node.js', 'Supabase'],
-            image: 'images/perfume.jpg',
+            image: 'images/business-d',
             demoLink: 'https://thokozanen.github.io/business-directory/',
             codeLink: 'https://github.com/thokozanen/business-directory'
         },
