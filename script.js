@@ -101,16 +101,16 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'A productivity application for organizing tasks with team collaboration features.',
             tags: ['Vue.js', 'Firebase', 'Tailwind CSS'],
             image: 'images/task.jpg',
-            demoLink: 'https://example-task-app.com',
-            codeLink: 'https://github.com/username/task-app'
+            demoLink: '#',
+            codeLink: '#'
         },
         {
             title: 'Portfolio Website',
             description: 'A custom portfolio website with animations and theme switching.',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
             image: 'images/suit.jpg',
-            demoLink: 'https://example-portfolio.com',
-            codeLink: 'https://github.com/username/portfolio'
+            demoLink: '#',
+            codeLink: '#'
         }
     ];
 
