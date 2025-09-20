@@ -208,47 +208,50 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to show toast notifications
     function showToast(message, type = 'info') {
-        if (!toastContainer) return;
-        
-        const toast = document.createElement('div');
-        toast.className = `toast toast-${type}`;
-        toast.innerHTML = `
-            <div class="toast-content">
-                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-                <span>${message}</span>
-            </div>
-            <button class="toast-close">
-                <i class="fas fa-times"></i>
-            </button>
-        `;
-        
-        toastContainer.appendChild(toast);
-        
-        // Add show class after a small delay
+    if (!toastContainer) return;
+    
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <div class="toast-content">
+        <i class="fas ${type === 'success' ? 'fa-check-circle' : 
+                        type === 'error' ? 'fa-exclamation-circle' : 
+                        'fa-info-circle'}"></i>
+        <span>${message}</span>
+        </div>
+        <button class="toast-close">
+        <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    toastContainer.appendChild(toast);
+    
+    // Add show class after a small delay
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+    
+    // Auto remove after 5 seconds
+    const removeToast = setTimeout(() => {
+        toast.classList.remove('show');
         setTimeout(() => {
-            toast.classList.add('show');
-        }, 10);
-        
-        // Auto remove after 5 seconds
+        if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+        }
+        }, 300);
+    }, 5000);
+    
+    // Close button functionality
+    const closeButton = toast.querySelector('.toast-close');
+    closeButton.addEventListener('click', () => {
+        clearTimeout(removeToast);
+        toast.classList.remove('show');
         setTimeout(() => {
-            toast.classList.remove('show');
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.parentNode.removeChild(toast);
-                }
-            }, 300);
-        }, 5000);
-        
-        // Close button functionality
-        const closeButton = toast.querySelector('.toast-close');
-        closeButton.addEventListener('click', () => {
-            toast.classList.remove('show');
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.parentNode.removeChild(toast);
-                }
-            }, 300);
-        });
+        if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+        }
+        }, 300);
+    });
     }
     
     if (contactForm) {
