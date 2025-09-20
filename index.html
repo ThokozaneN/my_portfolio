@@ -179,17 +179,17 @@
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="contact" class="contact-section">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="about-me">
                     <div class="profile-image">
-                        <img src="images/thokozane.jpg" alt="thokozane">
+                        <img src="images/thokozane.jpg" alt="Your Name">
                     </div>
-                    <h3>Hi, Thokozane Nxumalo</h3>
-                    <p>I’m a South Africa-based professional fueled by creativity and driven by results. With experience across diverse projects worldwide, I turn ideas into meaningful, impactful solutions. Whether it’s designing, building, or strategizing, I bring passion, precision, and a personal touch to every project—helping your vision come to life exactly as you imagined it.</p>
-                    
+                    <h3>Hi, I am Thokozane Nxumalo</h3>
+                    <p>A passionate professional based in South Africa, accepting global projects. Let's collaborate to bring your ideas to life!</p>
+        
                     <div class="contact-icons">
                         <a href="tel:+27698077866" class="icon-link" aria-label="Call">
                             <i class="fas fa-phone"></i>
@@ -201,56 +201,29 @@
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
-                    
-                    <!--<div class="social-icons">
-                        <a href="#" class="icon-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="icon-link" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="icon-link" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="icon-link" aria-label="X (Twitter)">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
-                    </div>-->
                 </div>
-                
-                <form 
-                    id="contact-form"
-                    action="https://formspree.io/f/xzzvbnqj" 
-                    method="POST"
-                    class="contact-form"
-                >
+      
+                <form id="contact-form" class="contact-form">
                     <div class="form-group">
-                        <input 
-                            type="text" 
-                            name="name"
-                            placeholder="Your Name" 
-                            required
-                        >
+                        <input type="text" name="name" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input 
-                            type="email" 
-                            name="email"
-                            placeholder="Your Email" 
-                            required
-                        >
+                        <input type="email" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <textarea 
-                            name="message"
-                            placeholder="Your Message" 
-                            required
-                        ></textarea>
+                        <textarea name="message" placeholder="Your Message" required></textarea>
                     </div>
-                    <button type="submit" class="btn">Send Message</button>
+                    <button type="submit" class="btn">
+                        <span class="btn-text">Send Message</span>
+                        <span class="loading-spinner" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
+  
+        <div id="toast-container"></div>
     </section>
 
     <!--Footer-->

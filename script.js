@@ -192,57 +192,114 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(element);
     });
 
-    // Form submission with Formspree
+    // Form submission with Brevo
     const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const btnText = submitButton.querySelector('.btn-text');
-            const spinner = submitButton.querySelector('.loading-spinner');
-            
-            try {
-                // Show loading state
-                btnText.textContent = 'Sending...';
-                spinner.style.display = 'inline-block';
-                submitButton.disabled = true;
-                
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: new FormData(contactForm),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    // Success - show confirmation
-                    const successMessage = document.createElement('div');
-                    successMessage.className = 'form-success';
-                    successMessage.innerHTML = `
-                        <i class="fas fa-check-circle"></i>
-                        Message sent! I'll get back to you soon.
-                    `;
-                    contactForm.parentNode.insertBefore(successMessage, contactForm.nextSibling);
-                    contactForm.reset();
-                    
-                    // Remove success message after 5 seconds
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 5000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                alert('Oops! Something went wrong. Please try again or email me directly at nxuthokozane@outlook.com');
-                console.error('Form submission error:', error);
-            } finally {
-                // Reset button state
-                btnText.textContent = 'Send Message';
-                spinner.style.display = 'none';
-                submitButton.disabled = false;
-            }
+    const toastContainer = document.getElementById('toast-container');
+  
+    // Function to show toast notifications
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.innerHTML = `
+        <div class="toast-content">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+            <span>${message}</span>
+        </div>
+        <button class="toast-close">
+            <i class="fas fa-times"></i>
+        </button>
+        `;
+    
+        toastContainer.appendChild(toast);
+    
+    // Add show class after a small delay
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+        toast.remove();
+        }, 300);
+    }, 5000);
+    
+    // Close button functionality
+    const closeButton = toast.querySelector('.toast-close');
+    closeButton.addEventListener('click', () => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    });
+  }
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const btnText = submitButton.querySelector('.btn-text');
+      const spinner = submitButton.querySelector('.loading-spinner');
+      
+      try {
+        // Show loading state
+        btnText.textContent = 'Sending...';
+        spinner.style.display = 'inline-block';
+        submitButton.disabled = true;
+        
+        // Prepare form data
+        const formData = new FormData(contactForm);
+        const formObject = Object.fromEntries(formData.entries());
+        
+        // Replace with your Brevo API key and template ID
+        const BREVO_API_KEY = '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';
+        const templateId = 1; // Replace with your template ID
+        
+        // Send email using Brevo API
+        const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'api-key': BREVO_API_KEY
+          },
+          body: JSON.stringify({
+            sender: {
+              name: formObject.name,
+              email: formObject.email
+            },
+            to: [{
+              email: "dev@thokozane.co.za",
+              name: "Thokozane"
+            }],
+            templateId: templateId,
+            params: {
+              name: formObject.name,
+              email: formObject.email,
+              message: formObject.message
+            },
+            subject: "New message from your website"
+          })
         });
-    }
+        
+        if (response.ok) {
+          showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
+          contactForm.reset();
+        } else {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Form submission failed');
+        }
+      } catch (error) {
+        showToast('Oops! Something went wrong. Please try again or email me directly at dev@thokozane.co.za', 'error');
+        console.error('Form submission error:', error);
+      } finally {
+        // Reset button state
+        btnText.textContent = 'Send Message';
+        spinner.style.display = 'none';
+        submitButton.disabled = false;
+      }
+    });
+  }
 });
